@@ -1,2 +1,4 @@
-A simple bot for https://github.com/GridControl-Team/GridControl
+Bots for https://github.com/GridControl-Team/GridControl
 
+gridbot: move west/north, follow lines of resources, try to avoid getting trapped
+linebot: follow lines of resources, turn right on collision
