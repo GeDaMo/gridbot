@@ -37,7 +37,7 @@
 
 # Random walk
 @WALK
-  PUSH << @MOVE
+  PUSH @MOVE
   RAND << 3
   PEEK
   CALLFF << 2
