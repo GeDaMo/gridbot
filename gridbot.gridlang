@@ -1,3 +1,5 @@
+# gridbot.gridlang
+
 # moves in a North West direction
 # will consume lines West and North
 @FOREVER
