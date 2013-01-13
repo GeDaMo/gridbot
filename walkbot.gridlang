@@ -41,4 +41,5 @@
   RAND << 3
   PEEK
   CALLFF << 2
+  IFFGOTO @WALK
   GOTO << @FOREVER
