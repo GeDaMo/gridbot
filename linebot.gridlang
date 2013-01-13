@@ -3,19 +3,15 @@
 # Follow lines, turn right on collision or if count hits 0
 
 # Push count
-  PUSH 0
+  PUSH 3
 
 @FOREVER
 # Follow lines of resources
 @GOEAST
   CALLFF << @PULL @EAST 2
-  ADD  # add to count
   CALLFF << @PULL @NORTH 2
-  ADD
   CALLFF << @PULL @SOUTH 2
-  ADD
-  DUP
-  LESS << 1  # check if count < 1
+  CALL << @UPDATECOUNT
   CALLFF << @MOVE @EAST 2
   ADD  # count < 1 OR move unsuccessful
   IFTGOTO << @GOSOUTH
@@ -23,13 +19,9 @@
 
 @GOSOUTH
   CALLFF << @PULL @SOUTH 2
-  ADD
   CALLFF << @PULL @EAST 2
-  ADD
   CALLFF << @PULL @WEST 2
-  ADD
-  DUP
-  LESS << 1
+  CALL << @UPDATECOUNT
   CALLFF << @MOVE @SOUTH 2
   ADD
   IFTGOTO << @GOWEST
@@ -37,13 +29,9 @@
 
 @GOWEST
   CALLFF << @PULL @WEST 2
-  ADD
   CALLFF << @PULL @SOUTH 2
-  ADD
   CALLFF << @PULL @NORTH 2
-  ADD
-  DUP
-  LESS << 1
+  CALL << @UPDATECOUNT
   CALLFF << @MOVE @WEST 2
   ADD
   IFFGOTO << @GONORTH
@@ -51,13 +39,9 @@
 
 @GONORTH
   CALLFF << @PULL @NORTH 2
-  ADD
   CALLFF << @PULL @WEST 2
-  ADD
   CALLFF << @PULL @EAST 2
-  ADD
-  DUP
-  LESS << 1
+  CALL << @UPDATECOUNT
   CALLFF << @MOVE @NORTH 2
   ADD
   IFTGOTO << @GOEAST
@@ -65,3 +49,20 @@
 
   GOTO @FOREVER
 
+# Expects results of 3 @PULLs
+# Returns 1 if count < 0, 0 otherwise
+@UPDATECOUNT
+  ADD
+  ADD
+  ADD
+  SUB << 1
+  DUP
+  LESS << 1  # check if count < 1
+  DUP
+  IFFGOTO << @RET
+  SWAP
+  POP
+  PUSH 3
+  SWAP
+@RET
+  RETURN
