@@ -42,11 +42,11 @@
   RETURN
 
 @dopunch  # direction
-  PUSH @CELL_BOT
+  PUSH @CELL_ROBOT
   PEEK << -2
   CALL << @lookfor
   IFFGOTO << @nopunch
-  PUSH @PULL
+  PUSH @PUNCH
   SWAP
   CALLFF << 2
 @nopunch
