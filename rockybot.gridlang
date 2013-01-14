@@ -1,0 +1,28 @@
+# rockybot.gridlang
+
+# push directions table [0..3]
+  PUSH @EAST
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @NORTH
+
+@FOREVER
+  CALLFF << @PUNCH @NORTH 2
+  CALLFF << @PUNCH @EAST 2
+  CALLFF << @PUNCH @SOUTH 2
+  CALLFF << @PUNCH @WEST 2
+  POPN << 4
+
+  CALLFF << @PULL @NORTH 2
+  CALLFF << @PULL @EAST 2
+  CALLFF << @PULL @SOUTH 2
+  CALLFF << @PULL @WEST 2
+  POPN << 4
+
+@WALK
+  PUSH @MOVE
+  RAND << 3
+  PEEK
+  CALLFF << 2
+  POP
+  GOTO << @FOREVER  
