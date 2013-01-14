@@ -1,63 +1,62 @@
 # rockybot.gridlang
 
 # push directions table [0..3]
+  PUSH @NORTH
   PUSH @EAST
   PUSH @SOUTH
   PUSH @WEST
-  PUSH @NORTH
 
-@FOREVER
-  CALL << @PUNCHALL
-  CALL << @NORTH @LOOKPULL
-  CALL << @PUNCHALL
-  CALL << @EAST @LOOKPULL
-  CALL << @PUNCHALL
-  CALL << @SOUTH @LOOKPULL
-  CALL << @PUNCHALL
-  CALL << @WEST @LOOKPULL
+@forever
+  CALL << @NORTH @dopull
+  CALL << @EAST @dopull
+  CALL << @SOUTH @dopull
+  CALL << @WEST @dopull
 
-  CALL << @PUNCHALL
-@WALK
+  CALL << @punchall
+@walk
   PUSH @MOVE
   RAND << 3
   PEEK
   CALLFF << 2
   POP
-  GOTO << @FOREVER
+  GOTO << @forever
 
-@PUNCHALL
-  CALL << @NORTH @LOOKPUNCH
-  CALL << @EAST @LOOKPUNCH
-  CALL << @SOUTH @LOOKPUNCH
-  CALL << @WEST @LOOKPUNCH
-  RETURN
-
-@LOOKPUNCH  # direction
-  PUSH @LOOK
+@dopull  # direction
+  CALL << @punchall
+  PUSH @CELL_RESOURCE
   PEEK << -2
-  CALLFF << 2
-  EQUAL << @CELL_ROBOT
-  IFTGOTO << @DOPUNCH
-  POP
-  RETURN
-@DOPUNCH
-  PUSH @PUNCH
-  SWAP
-  CALLFF << 2
-  POP
-  RETURN
-
-@LOOKPULL
-  PUSH @LOOK
-  PEEK << -2
-  CALLFF << 2
-  EQUAL << @CELL_RESOURCE
-  IFTGOTO << @DOPULL
-  POP
-  RETURN
-@DOPULL
+  CALL << @lookfor
+  IFFGOTO << @nopull
   PUSH @PULL
   SWAP
   CALLFF << 2
+@nopull
   POP
   RETURN
+
+@punchall
+  CALL << @NORTH @dopunch
+  CALL << @EAST @dopunch
+  CALL << @SOUTH @dopunch
+  CALL << @WEST @dopunch
+  RETURN
+
+@dopunch  # direction
+  PUSH @CELL_BOT
+  PEEK << -2
+  CALL << @lookfor
+  IFFGOTO << @nopunch
+  PUSH @PULL
+  SWAP
+  CALLFF << 2
+@nopunch
+  POP
+  RETURN
+
+@lookfor  # item, direction -- bool
+  PUSH @LOOK
+  SWAP
+  CALLFF << 2
+  EQUAL
+  RETURN
+
