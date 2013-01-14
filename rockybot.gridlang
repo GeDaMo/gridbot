@@ -14,8 +14,9 @@
 
 # @PUNCH before moving
   CALL << @punchall
-# Should we go @NORTH?
-@trynorth
+# Short range @SCAN
+@countnorth
+  PUSH @NORTH
   CALLFF << @SCAN 1 -1 3
   EQUAL << @CELL_RESOURCE
   CALLFF << @SCAN -1 -1 3
@@ -24,11 +25,11 @@
   CALLFF << @SCAN 0 -2 3
   EQUAL << @CELL_RESOURCE
   ADD
-  IFFGOTO << @trysouth
-  CALLFF << @MOVE @NORTH 2
-  POP
-  GOTO << @forever
-@trysouth
+  STORE count
+  STORE direction
+
+@countsouth
+  PUSH @SOUTH
   CALLFF << @SCAN 1 1 3
   EQUAL << @CELL_RESOURCE
   CALLFF << @SCAN -1 1 3
@@ -37,10 +38,39 @@
   CALLFF << @SCAN 0 2 3
   EQUAL << @CELL_RESOURCE
   ADD
+  CALL << @updatecount
+
+@counteast
+  PUSH @EAST
+  CALLFF << @SCAN 1 -1 3
+  EQUAL << @CELL_RESOURCE
+  CALLFF << @SCAN 1 1 3
+  EQUAL << @CELL_RESOURCE
+  ADD
+  CALLFF << @SCAN 2 0 3
+  EQUAL << @CELL_RESOURCE
+  ADD
+  CALL << @updatecount
+
+@counteast
+  PUSH @WEST
+  CALLFF << @SCAN -1 -1 3
+  EQUAL << @CELL_RESOURCE
+  CALLFF << @SCAN -1 1 3
+  EQUAL << @CELL_RESOURCE
+  ADD
+  CALLFF << @SCAN -2 0 3
+  EQUAL << @CELL_RESOURCE
+  ADD
+  CALL << @updatecount
+
+@domove
+  PUSH count
   IFFGOTO << @walk
-  CALLFF << @MOVE @SOUTH 2
-  POP
-  GOTO << @forever
+  PUSH @MOVE
+  PUSH direction
+  CALLFF << 2
+  GOTO @forever
 
 # Random walk
 @walk
@@ -88,5 +118,17 @@
   SWAP
   CALLFF << 2
   EQUAL
+  RETURN
+
+@updatecount  # direction, count
+  PUSH count
+  PEEK << -2
+  LESS
+  IFFGOTO << @noupdate
+  STORE count
+  STORE direction
+  RETURN
+@noupdate
+  POP
   RETURN
 
