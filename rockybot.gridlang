@@ -67,10 +67,9 @@
 @domove
   PUSH count
   IFFGOTO << @walk
-  PUSH @MOVE
-  PUSH direction
-  CALLFF << 2
-  GOTO @forever
+  CALLFF << @MOVE direction 2
+  POP
+  GOTO << @forever
 
 # Random walk
 @walk
@@ -129,6 +128,7 @@
   STORE direction
   RETURN
 @noupdate
+  POP
   POP
   RETURN
 
