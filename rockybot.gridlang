@@ -71,12 +71,8 @@
   POP
   GOTO << @forever
 
-# Random walk
 @walk
-  PUSH @MOVE
-  RAND << 3
-  PEEK
-  CALLFF << 2
+  CALLFF << @MOVE @NORTH 2
   POP
   GOTO << @forever
 
