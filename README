@@ -1,7 +1,4 @@
 Bots for https://github.com/GridControl-Team/GridControl
 
 gridbot: move west/north, follow lines of resources, try to avoid getting trapped
-linebot: follow lines of resources, turn right on collision; keeps count of successful pulls, decrements on move, turns right when it hits zero
-walkbot: follow lines of resources, random walk
-randombot: pull all directions, random walk
-rockybot: punch in all directions, gather resources, random walk
+rockybot: punch in all directions, gather resources
