@@ -1,0 +1,119 @@
+// gridbot.gridc
+
+int direction;
+int bots;
+int resources;
+int nbots;
+int nresources;
+int sbots;
+int sresources;
+int ebots;
+int eresources;
+int wbots;
+int wresources;
+
+void doaction(dir, action, contents)
+{
+  if (ffi(@LOOK, dir) != contents)
+    return;
+  ffi(action, dir);
+}
+
+void dopunch(dir)
+{
+  doaction(dir, @PUNCH, @CELL_ROBOT);
+}
+
+void dopull(dir)
+{
+  defend();
+  doaction(dir, @PULL, @CELL_RESOURCE);
+}
+
+void domove(dir)
+{
+  doaction(dir, @MOVE, @CELL_EMPTY);
+}
+
+int shortrangescan()
+{
+  nbots = ((ffi(@SCAN, 0, -2) == @CELL_ROBOT) +
+           (ffi(@SCAN, -1, -1) == @CELL_ROBOT) +
+           (ffi(@SCAN, 1, -1) == @CELL_ROBOT));
+  nresources = ((ffi(@SCAN, 0, -2) == @CELL_RESOURCE) +
+                (ffi(@SCAN, -1, -1) == @CELL_RESOURCE) +
+                (ffi(@SCAN, 1, -1) == @CELL_RESOURCE));
+  sbots = ((ffi(@SCAN, 0, 2) == @CELL_ROBOT) +
+           (ffi(@SCAN, -1, 1) == @CELL_ROBOT) +
+           (ffi(@SCAN, 1, 1) == @CELL_ROBOT));
+  sresources = ((ffi(@SCAN, 0, 2) == @CELL_RESOURCE)) +
+                (ffi(@SCAN, -1, 1) == @CELL_RESOURCE) +
+                (ffi(@SCAN, 1, 1) == @CELL_RESOURCE));
+  ebots = ((ffi(@SCAN, 2, 0) == @CELL_ROBOT)) +
+           (ffi(@SCAN, 1, -1) == @CELL_ROBOT) +
+           (ffi(@SCAN, 1, 1) == @CELL_ROBOT));
+  eresources = ((ffi(@SCAN, 2, 0) == @CELL_RESOURCE)) +
+                (ffi(@SCAN, 1, -1) == @CELL_RESOURCE) +
+                (ffi(@SCAN, 1, 1) == @CELL_RESOURCE));
+  wbots = ((ffi(@SCAN, -2, 0) == @CELL_ROBOT)) +
+           (ffi(@SCAN, -1, -1) == @CELL_ROBOT) +
+           (ffi(@SCAN, -1, 1) == @CELL_ROBOT));
+  wresources = ((ffi(@SCAN, -2, 0) == @CELL_RESOURCE)) +
+                (ffi(@SCAN, -1, -1) == @CELL_RESOURCE) +
+                (ffi(@SCAN, -1, 1) == @CELL_RESOURCE));
+}
+
+void defend()
+{
+  dopunch(@NORTH);
+  dopunch(@EAST);
+  dopunch(@SOUTH);
+  dopunch(@WEST);
+}
+
+void consume()
+{
+  dopull(@NORTH);
+  dopull(@EAST);
+  dopull(@SOUTH);
+  dopull(@WEST);
+}
+
+void decide()
+{
+  direction = @NORTH;
+  bots = nbots;
+  resources = nresources;
+  if (ebots < bots)
+    if (eresources > resources)
+    {
+      direction = @EAST;
+      bots = ebots;
+      resources = eresources;
+    }
+  if (wbots < bots)
+    if (wresources > resources)
+    {
+      direction = @WEST;
+      bots = wbots;
+      resources = wresources;
+    }
+  if (sbots < bots)
+    if (sresources > resources)
+    {
+      direction = @SOUTH;
+      bots = sbots;
+      resources = sresources;
+    }
+  domove(direction);
+}
+
+int main()
+{
+  while (1)
+  {
+    consume();
+    shortrangescan();
+    decide();
+  }
+}
