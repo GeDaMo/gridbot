@@ -1,0 +1,566 @@
+# gridbot.gridlang
+
+# movetable [0..255]
+  PUSH 0
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @WEST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @SOUTH
+  PUSH @WEST
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @SOUTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @NORTH
+
+# dirtable [256..259]
+  PUSH @NORTH
+  PUSH @EAST
+  PUSH @WEST
+  PUSH @SOUTH
+  GOTO << @main
+
+@dopunch
+# call nequal
+# call ffi
+PUSH @LOOK
+PEEK << -2
+CALLFF << 2
+PUSH @CELL_ROBOT
+NEQUAL
+IFFGOTO << @L0
+# return
+POP
+PUSH 0
+RETURN
+@L0
+@L1
+# return
+# call ffi
+PUSH @PUNCH
+PEEK << -2
+CALLFF << 2
+STORE retval
+POP
+PUSH retval
+RETURN
+# end @dopunch
+
+@dopull
+# call nequal
+# call ffi
+PUSH @LOOK
+PEEK << -2
+CALLFF << 2
+PUSH @CELL_RESOURCE
+NEQUAL
+IFFGOTO << @L2
+# return
+POP
+PUSH 0
+RETURN
+@L2
+@L3
+# return
+# call ffi
+PUSH @PULL
+PEEK << -2
+CALLFF << 2
+STORE retval
+POP
+PUSH retval
+RETURN
+# end @dopull
+
+@domove
+# call nequal
+# call ffi
+PUSH @LOOK
+PEEK << -2
+CALLFF << 2
+PUSH @CELL_EMPTY
+NEQUAL
+IFFGOTO << @L4
+# return
+POP
+PUSH 0
+RETURN
+@L4
+@L5
+# return
+# call ffi
+PUSH @MOVE
+PEEK << -2
+CALLFF << 2
+STORE retval
+POP
+PUSH retval
+RETURN
+# end @domove
+
+@moveindex
+# return
+# call add
+# call mul
+# call equal
+# call ffi
+PUSH @SCAN
+PUSH 0
+PUSH -2
+CALLFF << 3
+PUSH @CELL_RESOURCE
+EQUAL
+PUSH 128
+MUL
+# call add
+# call mul
+# call equal
+# call ffi
+PUSH @SCAN
+PUSH 1
+PUSH -1
+CALLFF << 3
+PUSH @CELL_RESOURCE
+EQUAL
+PUSH 64
+MUL
+# call add
+# call mul
+# call equal
+# call ffi
+PUSH @SCAN
+PUSH 2
+PUSH 0
+CALLFF << 3
+PUSH @CELL_RESOURCE
+EQUAL
+PUSH 32
+MUL
+# call add
+# call mul
+# call equal
+# call ffi
+PUSH @SCAN
+PUSH 1
+PUSH 1
+CALLFF << 3
+PUSH @CELL_RESOURCE
+EQUAL
+PUSH 16
+MUL
+# call add
+# call mul
+# call equal
+# call ffi
+PUSH @SCAN
+PUSH 0
+PUSH 2
+CALLFF << 3
+PUSH @CELL_RESOURCE
+EQUAL
+PUSH 8
+MUL
+# call add
+# call mul
+# call equal
+# call ffi
+PUSH @SCAN
+PUSH -1
+PUSH 1
+CALLFF << 3
+PUSH @CELL_RESOURCE
+EQUAL
+PUSH 4
+MUL
+# call add
+# call mul
+# call equal
+# call ffi
+PUSH @SCAN
+PUSH -2
+PUSH 0
+CALLFF << 3
+PUSH @CELL_RESOURCE
+EQUAL
+PUSH 2
+MUL
+# call equal
+# call ffi
+PUSH @SCAN
+PUSH -1
+PUSH -1
+CALLFF << 3
+PUSH @CELL_RESOURCE
+EQUAL
+ADD
+ADD
+ADD
+ADD
+ADD
+ADD
+ADD
+STORE retval
+PUSH retval
+RETURN
+# end @moveindex
+
+@consume
+# call dopull
+PUSH @NORTH
+CALL << @dopull
+IFFGOTO << @L6
+# return
+PUSH 1
+RETURN
+@L6
+@L7
+# call dopull
+PUSH @EAST
+CALL << @dopull
+IFFGOTO << @L8
+# return
+PUSH 1
+RETURN
+@L8
+@L9
+# call dopull
+PUSH @SOUTH
+CALL << @dopull
+IFFGOTO << @L10
+# return
+PUSH 1
+RETURN
+@L10
+@L11
+# call dopull
+PUSH @WEST
+CALL << @dopull
+IFFGOTO << @L12
+# return
+PUSH 1
+RETURN
+@L12
+@L13
+# call dopunch
+PUSH @NORTH
+CALL << @dopunch
+IFFGOTO << @L14
+# return
+PUSH 1
+RETURN
+@L14
+@L15
+# call dopunch
+PUSH @EAST
+CALL << @dopunch
+IFFGOTO << @L16
+# return
+PUSH 1
+RETURN
+@L16
+@L17
+# call dopunch
+PUSH @SOUTH
+CALL << @dopunch
+IFFGOTO << @L18
+# return
+PUSH 1
+RETURN
+@L18
+@L19
+# call dopunch
+PUSH @WEST
+CALL << @dopunch
+IFFGOTO << @L20
+# return
+PUSH 1
+RETURN
+@L20
+@L21
+# return
+PUSH 0
+RETURN
+# end @consume
+
+@act
+# call consume
+CALL << @consume
+IFFGOTO << @L22
+# return
+PUSH 1
+RETURN
+@L22
+@L23
+# call domove
+# call moveindex
+CALL << @moveindex
+PEEK
+DUP
+IFFGOTO << @random
+CALL << @domove
+POP
+# return
+PUSH 0
+RETURN
+@random
+  POP
+  RAND << 3
+  ADD << 256
+  PEEK
+  CALL << @domove
+  RETURN
+# end @act
+
+@main
+@L24
+# call act
+CALL << @act
+POP
+GOTO << @L24
+# end @main
+
