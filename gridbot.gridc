@@ -1,119 +1,87 @@
 // gridbot.gridc
 
-int direction;
-int bots;
-int resources;
-int nbots;
-int nresources;
-int sbots;
-int sresources;
-int ebots;
-int eresources;
-int wbots;
-int wresources;
+// Objective: maximise resources per turn
+// Strategy:
+//   consume resources
+//   punch any enemies
+//   look for best location to move to
 
-void doaction(dir, action, contents)
+int dirtable[4];
+
+int dopunch(dir)
 {
-  if (ffi(@LOOK, dir) != contents)
-    return;
-  ffi(action, dir);
+  if (ffi(@LOOK, dir) != @CELL_ROBOT)
+    return 0;
+  return ffi(@PUNCH, dir);
 }
 
-void dopunch(dir)
+int dopull(dir)
 {
-  doaction(dir, @PUNCH, @CELL_ROBOT);
+  if (ffi(@LOOK, dir) != @CELL_RESOURCE)
+    return 0;
+  return ffi(@PULL, dir);
 }
 
-void dopull(dir)
+int domove(dir)
 {
-  defend();
-  doaction(dir, @PULL, @CELL_RESOURCE);
+  if (ffi(@LOOK, dir) != @CELL_EMPTY)
+    return 0;
+  return ffi(@MOVE, dir);
 }
 
-void domove(dir)
+int consume()
 {
-  doaction(dir, @MOVE, @CELL_EMPTY);
+  if (dopull(@NORTH))
+    return 1;
+  if (dopull(@EAST))
+    return 1;
+  if (dopull(@SOUTH))
+    return 1;
+  if (dopull(@WEST))
+    return 1;
+
+  if (dopunch(@NORTH))
+    return 1;
+  if (dopunch(@EAST))
+    return 1;
+  if (dopunch(@SOUTH))
+    return 1;
+  if (dopunch(@WEST))
+    return 1;
 }
 
-int shortrangescan()
+int act()
 {
-  nbots = ((ffi(@SCAN, 0, -2) == @CELL_ROBOT) +
-           (ffi(@SCAN, -1, -1) == @CELL_ROBOT) +
-           (ffi(@SCAN, 1, -1) == @CELL_ROBOT));
-  nresources = ((ffi(@SCAN, 0, -2) == @CELL_RESOURCE) +
-                (ffi(@SCAN, -1, -1) == @CELL_RESOURCE) +
-                (ffi(@SCAN, 1, -1) == @CELL_RESOURCE));
-  sbots = ((ffi(@SCAN, 0, 2) == @CELL_ROBOT) +
-           (ffi(@SCAN, -1, 1) == @CELL_ROBOT) +
-           (ffi(@SCAN, 1, 1) == @CELL_ROBOT));
-  sresources = ((ffi(@SCAN, 0, 2) == @CELL_RESOURCE)) +
-                (ffi(@SCAN, -1, 1) == @CELL_RESOURCE) +
-                (ffi(@SCAN, 1, 1) == @CELL_RESOURCE));
-  ebots = ((ffi(@SCAN, 2, 0) == @CELL_ROBOT)) +
-           (ffi(@SCAN, 1, -1) == @CELL_ROBOT) +
-           (ffi(@SCAN, 1, 1) == @CELL_ROBOT));
-  eresources = ((ffi(@SCAN, 2, 0) == @CELL_RESOURCE)) +
-                (ffi(@SCAN, 1, -1) == @CELL_RESOURCE) +
-                (ffi(@SCAN, 1, 1) == @CELL_RESOURCE));
-  wbots = ((ffi(@SCAN, -2, 0) == @CELL_ROBOT)) +
-           (ffi(@SCAN, -1, -1) == @CELL_ROBOT) +
-           (ffi(@SCAN, -1, 1) == @CELL_ROBOT));
-  wresources = ((ffi(@SCAN, -2, 0) == @CELL_RESOURCE)) +
-                (ffi(@SCAN, -1, -1) == @CELL_RESOURCE) +
-                (ffi(@SCAN, -1, 1) == @CELL_RESOURCE));
-}
-
-void defend()
-{
-  dopunch(@NORTH);
-  dopunch(@EAST);
-  dopunch(@SOUTH);
-  dopunch(@WEST);
-}
-
-void consume()
-{
-  dopull(@NORTH);
-  dopull(@EAST);
-  dopull(@SOUTH);
-  dopull(@WEST);
-}
-
-void decide()
-{
-  direction = @NORTH;
-  bots = nbots;
-  resources = nresources;
-  if (ebots < bots)
-    if (eresources > resources)
+  if (consume())
+    return 1;
+  if (ffi(@SCAN, 1, -1) == @CELL_RESOURCE)
+  {
+    if (ffi(@SCAN, -1, -1) == @CELL_RESOURCE)
     {
-      direction = @EAST;
-      bots = ebots;
-      resources = eresources;
+      return domove(@NORTH);
     }
-  if (wbots < bots)
-    if (wresources > resources)
+    return domove(@EAST);
+  }
+  if (ffi(@SCAN, -1, 1) == @CELL_RESOURCE)
+  {
+    if (ffi(@SCAN, 1, 1) == @CELL_RESOURCE)
     {
-      direction = @WEST;
-      bots = wbots;
-      resources = wresources;
+      return domove(@SOUTH);
     }
-  if (sbots < bots)
-    if (sresources > resources)
-    {
-      direction = @SOUTH;
-      bots = sbots;
-      resources = sresources;
-    }
-  domove(direction);
+    return domove(@WEST);
+  }
+  domove(dirtable[rand(3)]);
 }
 
 int main()
 {
+  dirtable[0] = @NORTH;
+  dirtable[1] = @EAST;
+  dirtable[2] = @WEST;
+  dirtable[3] = @SOUTH;
+
   while (1)
   {
-    consume();
-    shortrangescan();
-    decide();
+    act();
   }
 }
