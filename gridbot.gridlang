@@ -1,6 +1,6 @@
 # gridbot.gridlang
 
-  CALL @init
+  CALL << @init
 
 @forever
   CALL << @act
@@ -81,7 +81,7 @@
   MUL << 8
   ADD
   # sw
-  CALLF << @SCAN -1 1 3
+  CALLFF << @SCAN -1 1 3
   EQUAL << @CELL_RESOURCE
   MUL << 4
   ADD
@@ -134,7 +134,7 @@
   PUSH @LOOK
   PEEK << -2
   CALLFF << 2
-  EQUAL <<PUSH @CELL_EMPTY
+  EQUAL << @CELL_EMPTY
   IFTGOTO << @foundempty
   POP
   PUSH 0
