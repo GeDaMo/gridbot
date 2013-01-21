@@ -136,13 +136,22 @@
   CALLFF << 2
   EQUAL << @CELL_EMPTY
   IFTGOTO << @foundempty
-  POP
-  PUSH 0
+  # destination not empty, try pushing
+  PUSH @PUSH
+  SWAP
+  CALLFF << 2
+  # if the push fails, give up
+  IFFGOTO << @die
+  PUSH 1
   RETURN
 @foundempty
   PUSH @MOVE
   SWAP
   CALLFF << 2
+  RETURN
+@die
+  # die and reappear somewhere else
+  CALLFF << @SELFDESTRUCT 1 2
   RETURN
 
 
