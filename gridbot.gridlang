@@ -16,6 +16,7 @@
   DUP
   IFFGOTO << @random
   CALL << @domove
+  POP
   RETURN
 @random
   POP
